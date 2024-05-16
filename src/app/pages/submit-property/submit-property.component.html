@@ -1,0 +1,364 @@
+<div class="p-3">
+    <div class="theme-container">
+  
+      <mat-card ngClass.lt-lg="p-0" [formGroup]="submitForm">
+  
+        <mat-stepper #horizontalStepper orientation="horizontal" linear="true" class="submit-property" (selectionChange)="onSelectionChange($event)">
+
+            <mat-step [stepControl]="submitForm.get('basic')" [label]="'CREATE.BASIC' | translate">
+              <div class="step-content">
+
+                  <form formGroupName="basic" fxLayout="row wrap">
+
+                      <div fxFlex="100" class="p-3">
+                        <h1 class="fw-500 text-center"> {{'CREATE.BASIC' | translate}}</h1>
+                      </div>
+
+                      <div fxFlex="100" class="py-3">
+                          <mat-slide-toggle formControlName="featured" class="uppercase">{{"TEXT_INPUT.HABILITY"| translate }}</mat-slide-toggle>
+                      </div>
+                              
+                      <div fxFlex="100" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.NAME_HOTEL" | translate}}</mat-label>
+                            <input matInput placeholder="" formControlName="title" required autocomplete="off">
+                            <mat-error *ngIf="submitForm.get('basic')['controls'].title.errors?.required">{{"TEXT_INPUT.NAME_HOTEL" | translate}} {{ "TEXT_INPUT.REQUIRED" | translate}}</mat-error>
+                        </mat-form-field>
+                      </div>  
+                  
+                      <div fxFlex="100" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.DESCRIPTION" |translate}}</mat-label> 
+                            <textarea matInput placeholder="Description" formControlName="desc" rows="7"></textarea> 
+                        </mat-form-field> 
+                      </div> 
+                  
+                      <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Price ($)</mat-label>
+                            <input matInput placeholder="Enter sale or rent price" formControlName="priceDollar" autocomplete="off"> 
+                        </mat-form-field>
+                      </div> 
+                  
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Price (€)</mat-label>
+                            <input matInput placeholder="Enter sale or rent price" formControlName="priceEuro" autocomplete="off"> 
+                        </mat-form-field>
+                      </div>  -->
+                  
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.CATEGORY_HOTEL"| translate }}</mat-label>
+                            <mat-select placeholder="Select Property Status" formControlName="hotelCateogry">
+                                <mat-option *ngFor="let category of categoriesHotel" [value]="category">
+                                    {{category.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="submitForm.get('basic')['controls'].hotelCateogry.errors?.required">{{"TEXT_INPUT.CATEGORY_HOTEL"| translate }} {{"TEXT_INPUT.REQUIRED" |translate }}</mat-error>                                                            
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label> {{ "TEXT_INPUT.HOTEL_TYPE" | translate}}</mat-label> 
+                            <mat-select placeholder="Select Property Type" formControlName="hotelType" >
+                                <mat-option *ngFor="let type of hotelsTypes" [value]="type">
+                                    {{type.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="submitForm.get('basic')['controls'].hotelType.errors?.required">{{ "TEXT_INPUT.HOTEL_TYPE" | translate}}  {{"TEXT_INPUT.REQUIRED" |translate }}</mat-error>                               
+                        </mat-form-field>
+                      </div>
+                  
+                  
+                      <div fxFlex="100" class="step-section pb-2">
+                          <p class="mb-0"><span class="uppercase fw-500">{{"TEXT_INPUT.GALLERY" | translate}}</span><span class="text-muted mx-3">({{"TEXT_INPUT.MAX" | translate }} 8 {{"TEXT_INPUT.IMAGES" | translate }})</span></p>  
+                          <input-file formControlName="gallery" fileLimit="8" fileAccept="image/*"></input-file>  
+                      </div> 
+                  
+                      <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                          <span class="mx-1 uppercase">{{"BTN.NEXT" | translate}}</span>                    
+                          <mat-icon>navigate_next</mat-icon>
+                        </button> 
+                      </div> 
+                  
+                  </form>
+               
+              </div>
+            </mat-step>
+            
+            <mat-step [stepControl]="submitForm.get('address')" [label]="'CREATE.UBICATION' | translate">
+              <div class="step-content">
+
+                  <form formGroupName="address" fxLayout="row wrap">
+            
+                      <div fxFlex="100" class="p-3">
+                        <h1 class="fw-500 text-center">{{'CREATE.UBICATION' | translate}}</h1>
+                      </div>
+                                
+                      <div fxFlex="100" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
+                            <mat-label>{{'CREATE.UBICATION' | translate}}</mat-label>
+                            <input matInput [placeholder]="'TEXT_INPUT.LABEL_UBICATION' | translate" formControlName="location" autocomplete="off" #addressAutocomplete> 
+                            <button *ngIf="submitForm.get('address')['controls'].location.value" mat-button matSuffix mat-icon-button (click)="submitForm.get('address')['controls'].location.setValue(null)" type="button">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitForm.get('address')['controls'].location.errors?.required">{{'CREATE.UBICATION' | translate}} {{ "TEXT_INPUT.REQUIRED" | translate}}</mat-error>   
+                        </mat-form-field>
+                      </div> 
+                    
+                      <div fxFlex="100" class="px-2 mb-4">
+                          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true" (mapClick)="onMapClick($event)">
+                              <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (markerClick)="onMarkerClick($event)"></agm-marker>
+                          </agm-map>
+                      </div>
+                    
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.CITY" | translate}}</mat-label>
+                            <mat-select placeholder="Select City..." formControlName="city" (selectionChange)="onSelectCity()" required> 
+                              <mat-option *ngFor="let city of cities" [value]="city">
+                                {{city.name}}
+                              </mat-option>
+                            </mat-select> 
+                            <mat-error *ngIf="submitForm.get('address')['controls'].city.errors?.required">{{"TEXT_INPUT.CITY" | translate}} {{ "TEXT_INPUT.REQUIRED" | translate}}</mat-error>                    
+                        </mat-form-field>
+                      </div> 
+                    
+                      <!-- <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Zip Code</mat-label>
+                            <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">                  
+                          </mat-form-field>
+                      </div> -->
+                    
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label> {{'TEXT_INPUT.NEIGHBORHOOD' | translate}}</mat-label>
+                          <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood"  (selectionChange)="onSelectNeighborhood()">
+                            <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: submitForm.get('address')['controls'].city.value?.id" [value]="neighborhood">
+                              {{neighborhood.name}}
+                            </mat-option>
+                          </mat-select>   
+                        </mat-form-field>
+                      </div> 
+                    
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>{{'TEXT_INPUT.DIRECTION' | translate}}</mat-label>
+                          <input matInput placeholder="" formControlName="street"  autocomplete="off">
+                        </mat-form-field>
+                      </div> 
+                    
+                      <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+                        <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center" type="button">
+                          <mat-icon>navigate_before</mat-icon>
+                          <span class="mx-1 uppercase">{{"BTN.BACK" | translate}}</span>  
+                        </button>
+                        <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                          <span class="mx-1 uppercase">{{"BTN.NEXT" | translate}}</span>                    
+                          <mat-icon>navigate_next</mat-icon>
+                        </button> 
+                      </div>  
+                    
+                  </form>
+                
+              </div> 
+            </mat-step>
+
+            <mat-step [stepControl]="submitForm.get('additional')" [label]="'CREATE.BEDROOMS' | translate">
+              <div class="step-content">
+
+                  <form formGroupName="additional" fxLayout="row wrap">
+    
+                      <div fxFlex="100" class="p-3">
+                        <h1 class="fw-500 text-center">{{'CREATE.BEDROOMS' | translate}}</h1>
+                      </div>
+                  
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{'TEXT_INPUT.TOTAL_ROOMS'| translate}}</mat-label>
+                            <input matInput placeholder="" autocomplete="off" formControlName="bedrooms" onlyNumber maxlength="2">                  
+                          </mat-form-field>
+                      </div>
+                  
+                      <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.TOTAL_ROOMS_AVAILABLE"| translate}}</mat-label>
+                            <input matInput placeholder="" autocomplete="off" formControlName="bathrooms" onlyNumber maxlength="2">                  
+                          </mat-form-field>
+                      </div>
+                  
+                      <div fxFlex="100" fxFlex.gt-xs="40" class="px-2">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.SIMPLE_ROOMS" | translate}}</mat-label>
+                            <input matInput placeholder="" autocomplete="off" formControlName="garages" onlyNumber maxlength="2">                  
+                          </mat-form-field>
+                      </div>
+
+                    <div fxFlex="100" fxFlex.gt-xs="60" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.SINGLE_ROOMS_PRICE" | translate}} $ COP</mat-label>
+                            <input matInput placeholder="Enter sale or rent price" formControlName="priceSingleRoom" autocomplete="off"> 
+                        </mat-form-field>
+                      </div> 
+                  
+                      
+                      <div fxFlex="100" fxFlex.gt-xs="40" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>{{"TEXT_INPUT.DOUBLE_ROOMS" | translate}}</mat-label>
+                          <input matInput placeholder="" autocomplete="off" formControlName="area"  onlyNumber maxlength="2">                  
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="100" fxFlex.gt-xs="60" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>{{"TEXT_INPUT.DOUBLE_ROOMS_PRICE" | translate}} $ COP</mat-label>
+                            <input matInput placeholder="" formControlName="priceDoubleRoom" autocomplete="off"> 
+                        </mat-form-field>
+                      </div> 
+                          
+                      <div fxFlex="100" class="mb-2"> 
+                          <p class="uppercase m-2 fw-500">{{"TEXT_INPUT.FEATURES_SINGLE_ROOMS" | translate}}</p> 
+                          <div formArrayName="features" fxLayout="row wrap">
+                              <div [formGroupName]="i" *ngFor="let control of submitForm.get('additional')['controls'].features['controls']; index as i" class="p-2">
+                                  <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>                         
+                              </div>
+                          </div>
+                      </div>
+                      <div fxFlex="100" class="mb-2"> 
+                        <p class="uppercase m-2 fw-500">{{"TEXT_INPUT.FEATURES_DOUBLE_ROOMS" | translate}}</p> 
+                        <div formArrayName="features" fxLayout="row wrap">
+                            <div [formGroupName]="i" *ngFor="let control of submitForm.get('additional')['controls'].features['controls']; index as i" class="p-2">
+                                <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>                         
+                            </div>
+                        </div>
+                    </div>
+                  
+                  
+                      <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+                        <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center" type="button">
+                          <mat-icon>navigate_before</mat-icon>
+                          <span class="mx-1 uppercase">{{"BTN.BACK" | translate}}</span>  
+                        </button>
+                        <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                          <span class="mx-1 uppercase">{{"BTN.NEXT" | translate}}</span>                    
+                          <mat-icon>navigate_next</mat-icon>
+                        </button> 
+                      </div>  
+                  
+                  
+                  </form>
+                  
+                
+              </div> 
+            </mat-step>
+
+            <mat-step [stepControl]="submitForm.get('media')" [label]="'CREATE.MEDIA' | translate ">
+              <div class="step-content">
+
+                  <form formGroupName="media" fxLayout="row wrap">    
+                   
+                      <div fxFlex="100" class="p-3">
+                        <h1 class="fw-500 text-center">{{'CREATE.MEDIA' | translate}}</h1>
+                      </div>
+                  
+                      <div fxFlex="100" fxLayoutAlign="start center" class="my-3 px-2"> 
+                          <p class="mb-0"><span class="uppercase fw-500">{{'CREATE.MEDIA' | translate}}</span><span class="text-muted mx-3"> {{"TEXT_INPUT.TEXT_MP4" | translate}}</span></p>                            
+                          <button type="button" mat-icon-button color="primary" (click)="addVideo()" matTooltip="Add New Video" matTooltipPosition="after">
+                              <mat-icon>add_circle</mat-icon>
+                          </button>
+                      </div> 
+                      <div formArrayName="videos" fxFlex="100" fxLayout="row wrap">  
+                          <div *ngFor="let item of submitForm.get('media')['controls'].videos['controls']; let i = index;" fxFlex="100" class="step-section">
+                              <div fxFlex="4" class="fw-500 text-center pt-3">{{i+1}}.</div>
+                              <div [formGroupName]="i" fxFlex="90" fxLayout="row wrap">
+                                  <mat-form-field appearance="outline" fxFlex="100" fxFlex.gt-xs="40" class="px-2">
+                                      <mat-label>{{"TEXT_INPUT.NAME" | translate}}</mat-label>
+                                      <input matInput placeholder="" formControlName="name" autocomplete="off">     
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" fxFlex="100" fxFlex.gt-xs="60" class="px-2">
+                                      <mat-label>{{"TEXT_INPUT.LINK_VIDEO" |translate}}</mat-label>
+                                      <input matInput placeholder="" formControlName="link" autocomplete="off">     
+                                  </mat-form-field>                                                 
+                              </div>
+                              <div fxFlex="6" class="text-center pt-2">
+                                  <button mat-icon-button color="warn" (click)="deleteVideo(i)" matTooltip="Delete Video">
+                                      <mat-icon>cancel</mat-icon>
+                                  </button>
+                              </div>                            
+                          </div>        
+                      </div>
+                                    
+                      
+                      <div fxFlex="100" fxLayoutAlign="start center" class="my-3 px-2"> 
+                          <p class="mb-0 uppercase fw-500">{{"TEXT_INPUT.ADITIONAAL_FEATURES" | translate}}</p>                            
+                          <button type="button" mat-icon-button color="primary" (click)="addFeature()" matTooltip="Add New Feature" matTooltipPosition="after">
+                              <mat-icon>add_circle</mat-icon>
+                          </button>
+                      </div> 
+                      <div formArrayName="additionalFeatures" fxFlex="100" fxLayout="row wrap">  
+                          <div *ngFor="let item of submitForm.get('media')['controls'].additionalFeatures['controls']; let i = index;" fxFlex="100" class="step-section">
+                              <div fxFlex="4" class="fw-500 text-center pt-3">{{i+1}}.</div>
+                              <div [formGroupName]="i" fxFlex="90" fxLayout="row wrap">
+                                  <mat-form-field appearance="outline" fxFlex="100" fxFlex.gt-xs="40" class="px-2">
+                                      <mat-label>{{"TEXT_INPUT.NAME" | translate}}</mat-label>
+                                      <input matInput placeholder="Feature name" formControlName="name" autocomplete="off">     
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" fxFlex="100" fxFlex.gt-xs="60" class="px-2">
+                                      <mat-label>{{"TEXT_INPUT.VALUE" | translate}}</mat-label>
+                                      <input matInput placeholder="Feature value" formControlName="value" autocomplete="off">     
+                                  </mat-form-field>                                                 
+                              </div>
+                              <div fxFlex="6" class="text-center pt-2">
+                                  <button mat-icon-button color="warn" (click)="deleteFeature(i)" matTooltip="Delete Feature">
+                                      <mat-icon>cancel</mat-icon>
+                                  </button>
+                              </div>                            
+                          </div>        
+                      </div>
+                  
+                  
+
+                     
+                      <div fxFlex="100" class="mt-3 p-2" fxLayoutAlign="space-between center">
+                          <button mat-raised-button color="primary" matStepperPrevious fxLayout="row" fxLayoutAlign="center center" type="button">
+                              <mat-icon>navigate_before</mat-icon>
+                              <span class="mx-1 uppercase">{{"BTN.BACK" | translate}}</span>  
+                          </button>
+                          <button mat-raised-button color="primary" matStepperNext fxLayout="row" fxLayoutAlign="center center" type="button">
+                              <span class="mx-1 uppercase"> {{"BTN.SAVE" | translate  }}</span>                    
+                              <mat-icon>navigate_next</mat-icon>
+                          </button> 
+                      </div> 
+                   
+                  
+                  </form>
+                
+              </div> 
+            </mat-step>
+
+            <mat-step [label]="'CREATE.CONFIRMATION' | translate">
+              <div class="step-content">
+                
+                  <div fxLayout="column" fxLayoutAlign="center center" class="pt-5 text-center"> 
+                    <button mat-fab color="primary"><mat-icon>check</mat-icon></button>
+                    <h2 class="mt-3 uppercase">{{"TEXT_INPUT.CONGRATULATION"| translate}}</h2>
+                    <h2 class="my-3">{{"TEXT_INPUT.TEXT_CONGRATULATION" | translate}} <span class="primary-color">"{{submitForm.get('basic')['controls'].title.value}}"</span> {{"TEXT_INPUT.TEXT_CONGRATULATION_2"| translate}}</h2>
+                    <p class="text-muted">{{"TEXT_INPUT.TEXT_CONGRATULATION_ALERT" | translate}}</p>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="center center" class="pt-3">  
+                    <button mat-raised-button color="accent" (click)="reset()" type="button">{{"BTN.REGISTER_NEW_HOTEL" | translate}}</button>       
+                  </div>
+
+              </div> 
+            </mat-step>
+
+        </mat-stepper>
+
+      </mat-card>
+
+
+    </div>
+</div>
