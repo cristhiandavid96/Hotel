@@ -115,17 +115,17 @@
             "num_document":"123456789",
             "email":"test@emal.com",
             "phone":"3108294507",
-            "full_name_emergency":"manuel delgado",
+            "full_name_emergency":"david velez",
             "phone_emergency":"3123030440"
         }
     ],
     "reserve_person":{
-        "full_name":"manuel astudillo delgado",
+        "full_name":"cristhian david velez ",
         "date_birth":"6/05/1998",
         "gender":"Hombre",
         "type_document":"Cedula ciudadania",
         "num_document":"3243249342",
-        "email":"manuel@emal.com",
+        "email":"davidvelez@gmail.com",
         "phone":"4302545834"
     }
 
