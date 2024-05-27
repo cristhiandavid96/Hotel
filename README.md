@@ -1,5 +1,5 @@
 # HOTELCONECT
-* link de prueba:  hotel-iota-silk.vercel.app
+* link de prueba:  [hotel-iota-silk.vercel.app](https://hotel-iota-silk.vercel.app/)
 Es una platforma para la reserva de hoteles y administracion de los mismos.
 
 Cumple con los siguientes requerimientos:
