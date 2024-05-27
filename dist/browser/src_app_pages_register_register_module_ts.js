@@ -11,13 +11,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RegisterComponent": () => (/* binding */ RegisterComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 34929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 34929);
 /* harmony import */ var _register_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./register.component.html?ngResource */ 59434);
 /* harmony import */ var _register_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./register.component.scss?ngResource */ 90053);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 22560);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 22560);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 2508);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 60124);
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/snack-bar */ 10930);
 /* harmony import */ var src_app_theme_utils_app_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/theme/utils/app-validators */ 38955);
 
 
@@ -26,12 +25,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 let RegisterComponent = class RegisterComponent {
-    constructor(fb, router, snackBar) {
+    constructor(fb, router /*, public snackBar: MatSnackBar*/) {
         this.fb = fb;
         this.router = router;
-        this.snackBar = snackBar;
         this.hide = true;
         this.userTypes = [
             { id: 1, name: 'Agent' },
@@ -50,18 +47,18 @@ let RegisterComponent = class RegisterComponent {
         }, { validator: (0,src_app_theme_utils_app_validators__WEBPACK_IMPORTED_MODULE_2__.matchingPasswords)('password', 'confirmPassword') });
     }
     onRegisterFormSubmit(values) {
-        if (this.registerForm.valid) {
-            this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-        }
+        console.log('asdasdasdasda');
+        //if (this.registerForm.valid) {
+        //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        //}
     }
 };
 RegisterComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.UntypedFormBuilder },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router },
-    { type: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__.MatSnackBar }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__.Router }
 ];
-RegisterComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+RegisterComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-register',
         template: _register_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
         styles: [_register_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__]

@@ -1123,6 +1123,7 @@ let AuthService = class AuthService {
                 default:
                     break;
             }
+            localStorage.setItem('stateTransaction', JSON.stringify({ "priceTotalSimple": -5957700000, "priceTotalDuo": -5957700000, "dayStay": -19859, "numAdults": "3" }));
             localStorage.setItem('userData', JSON.stringify((userSelect)));
             return true;
         }
@@ -2558,6 +2559,7 @@ let PropertyItemComponent = class PropertyItemComponent {
         }
     }
     calculateDate() {
+        localStorage.setItem('stateTransaction', JSON.stringify({ "priceTotalSimple": -5957700000, "priceTotalDuo": -5957700000, "dayStay": -19859, "numAdults": "3" }));
         if (this.searchFields) {
             const { start, end } = this.searchFields.range;
             const fecha1 = start;
@@ -2570,7 +2572,8 @@ let PropertyItemComponent = class PropertyItemComponent {
     }
     selectedProperty() {
         this.stateTransaction.numAdults = this.searchFields.numAdults;
-        localStorage.setItem('stateTransaction', JSON.stringify(this.stateTransaction));
+        localStorage.setItem('stateTransaction', JSON.stringify({ "priceTotalSimple": -5957700000, "priceTotalDuo": -5957700000, "dayStay": -19859, "numAdults": "3" }));
+        // localStorage.setItem('stateTransaction',JSON.stringify(this.stateTransaction))
     }
     getColumnCount(value) {
         if (value == 25) {

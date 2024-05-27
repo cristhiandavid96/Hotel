@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     { id: 2, name: 'Agency' },
     { id: 3, name: 'Buyer' }
   ];
-  constructor(public fb: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar) { }
+  constructor(public fb: UntypedFormBuilder, public router:Router/*, public snackBar: MatSnackBar*/) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -31,8 +31,9 @@ export class RegisterComponent implements OnInit {
   }
 
   public onRegisterFormSubmit(values:Object):void {
-    if (this.registerForm.valid) {
-      this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-    }
+    console.log('asdasdasdasda')
+    //if (this.registerForm.valid) {
+     //this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+    //}
   }
 }

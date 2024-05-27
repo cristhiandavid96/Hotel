@@ -30,6 +30,7 @@ export class AuthService {
             default:
               break;
       }
+      localStorage.setItem('stateTransaction', JSON.stringify({"priceTotalSimple":-5957700000,"priceTotalDuo":-5957700000,"dayStay":-19859,"numAdults":"3"}));
       localStorage.setItem('userData', JSON.stringify((userSelect)))
       return true
     }

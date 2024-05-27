@@ -74,79 +74,11 @@
                 </form>
                 
             </mat-card>  
-        </div>
-        <mat-card >
-            <h2 class="widget-title bg-primary">Contacto de la reserva</h2>
-            <form [formGroup]="contactReserve" >
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Ingrese su nombre completo</mat-label>
-                    <input matInput placeholder="ingrese su nombre" autocomplete="off" formControlName="name">
-                    <mat-error *ngIf="contactReserve.controls.name.errors?.required">Campo requerido</mat-error>                   
-                </mat-form-field>
-                <mat-form-field class="w-100"> 
-                    <mat-label>Fecha nacimiento</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field class="w-100">
-                    <mat-label>Genero</mat-label> 
-                    <mat-select placeholder="genero" formControlName="gender">
-                        <mat-option *ngFor="let gender of optionsGender" [value]="gender">
-                            {{gender.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="w-100">
-                    <mat-label>Tipo de documento</mat-label> 
-                    <mat-select placeholder="123 456789" formControlName="typeDocument">
-                        <mat-option *ngFor="let document of optionsDocument" [value]="document">
-                            {{document.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Ingrese su numero de documento</mat-label>
-                    <input matInput placeholder="ingrese aqui" autocomplete="off" formControlName="numDocument" type="number"> 
-                    <mat-error *ngIf="contactReserve.controls.numDocument.errors?.required">{{'FIELD.PHONE'|translate}} {{'FIELD.REQUIRED'|translate}}</mat-error>                 
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Ingrese su correo</mat-label> 
-                    <input matInput placeholder="example@.domino.com" autocomplete="off" formControlName="email">
-                    <mat-error *ngIf="contactReserve.controls.email.errors?.required">{{'FIELD.EMAIL'|translate}} {{'FIELD.REQUIRED'|translate}}</mat-error>
-                    <mat-error *ngIf="contactReserve.controls.email.hasError('invalidEmail')">Campo requerido</mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>ingrese su numero Celular</mat-label>
-                    <input matInput placeholder="000 0000 00 00" autocomplete="off" formControlName="phone" type="number"> 
-                    <mat-error *ngIf="contactReserve.controls.phone.errors?.required">Campo requerido</mat-error>                 
-                </mat-form-field>
-
-                <div>
-                    <h3>Contacto de emergencia</h3>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Ingrese su nombre completo</mat-label>
-                        <input matInput placeholder="ingrse su nombre" autocomplete="off" formControlName="nameEmergency">
-                        <mat-error *ngIf="contactReserve.controls.nameEmergency.errors?.required">ingrese su nombre</mat-error>                   
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Celular</mat-label>
-                        <input matInput placeholder="000 00 00" autocomplete="off" formControlName="phoneEmergency" type="number"> 
-                        <mat-error *ngIf="contactReserve.controls.phoneEmergency.errors?.required">Campo requerido</mat-error>                 
-                    </mat-form-field>
-                </div>
-
-            </form>
             
-        </mat-card>  
-
+        </div>
+        
         <div class="text-center" style="margin: 20px 0;">
-            <button mat-raised-button color="primary" type="submit" >Resevar</button>
+            <button mat-raised-button color="primary" type="button" (click)="onClose()" >Resevar</button>
         </div>
         </form>
 

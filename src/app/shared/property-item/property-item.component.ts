@@ -75,6 +75,7 @@ export class PropertyItemComponent implements OnInit {
   }
 
   public calculateDate(){
+    localStorage.setItem('stateTransaction', JSON.stringify({"priceTotalSimple":-5957700000,"priceTotalDuo":-5957700000,"dayStay":-19859,"numAdults":"3"}));
     if(this.searchFields){
       const {start,end}=this.searchFields.range
       const fecha1 = start;
@@ -90,7 +91,8 @@ export class PropertyItemComponent implements OnInit {
 
   selectedProperty(){
     this.stateTransaction.numAdults= this.searchFields.numAdults
-    localStorage.setItem('stateTransaction',JSON.stringify(this.stateTransaction))
+    localStorage.setItem('stateTransaction', JSON.stringify({"priceTotalSimple":-5957700000,"priceTotalDuo":-5957700000,"dayStay":-19859,"numAdults":"3"}));
+   // localStorage.setItem('stateTransaction',JSON.stringify(this.stateTransaction))
   }
 
   public getColumnCount(value){
