@@ -31,8 +31,8 @@
                     </mat-form-field>
                     <mat-form-field class="w-100">
                         <mat-label>Tipo de documento</mat-label> 
-                        <mat-select placeholder="123 456789" formControlName="typeDocument">
-                            <mat-option *ngFor="let document of optionsDocument" [value]="typeDocument">
+                        <mat-select placeholder="Tipo de documento"  formControlName="typeDocument">
+                            <mat-option *ngFor="let document of optionsDocument" [value]="document">
                                 {{document.name}}
                             </mat-option>
                         </mat-select>
