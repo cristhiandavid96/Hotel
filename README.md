@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/5cc4ad65-d82b-4698-ae12-46e223cabab6)
+
 # HOTELCONECT
 * link de prueba:  [hotel-iota-silk.vercel.app](https://hotel-iota-silk.vercel.app/)
 Es una platforma para la reserva de hoteles y administracion de los mismos.
